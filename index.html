@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceDash Pro - Advanced Financial Analysis & Predictions</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <h1>FinanceDash Pro</h1>
+            <span class="beta-tag">Advanced AI Predictions</span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-link active" data-section="predictions">AI Predictions</button>
+            <button class="nav-link" data-section="technical">Technical Analysis</button>
+            <button class="nav-link" data-section="portfolio">Portfolio</button>
+            <button class="nav-link" data-section="banking">Banking</button>
+            <button class="nav-link" data-section="insights">Market Insights</button>
+        </div>
+    </nav>
+
+    <!-- Stock Predictions Section -->
+    <section id="predictions" class="section active">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI Stock Price Predictions</h2>
+                <div class="prediction-controls">
+                    <select class="form-control" id="prediction-stock">
+                        <option value="RELIANCE">RELIANCE - Reliance Industries</option>
+                        <option value="TCS">TCS - Tata Consultancy Services</option>
+                        <option value="HDFCBANK">HDFCBANK - HDFC Bank</option>
+                        <option value="INFY">INFY - Infosys</option>
+                        <option value="ITC">ITC - ITC Limited</option>
+                        <option value="SBIN">SBIN - State Bank of India</option>
+                    </select>
+                    <button class="btn btn--primary" id="refresh-predictions">Refresh Predictions</button>
+                </div>
+            </div>
+
+            <div class="predictions-grid">
+                <!-- Current Stock Info Card -->
+                <div class="card prediction-card">
+                    <div class="card__body">
+                        <div class="stock-header">
+                            <div class="stock-title">
+                                <h3 id="current-stock-name">RELIANCE</h3>
+                                <span class="stock-sector" id="current-stock-sector">Oil & Gas</span>
+                            </div>
+                            <div class="stock-price-info">
+                                <span class="current-price" id="current-stock-price">₹2,456.75</span>
+                                <span class="price-change positive" id="current-stock-change">+12.50 (0.51%)</span>
+                            </div>
+                        </div>
+                        <div class="stock-metrics">
+                            <div class="metric-item">
+                                <span class="metric-label">Market Cap</span>
+                                <span class="metric-value" id="stock-market-cap">₹16,61,234 Cr</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">P/E Ratio</span>
+                                <span class="metric-value" id="stock-pe-ratio">15.2</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="metric-label">Dividend Yield</span>
+                                <span class="metric-value" id="stock-dividend">0.5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Predictions Card -->
+                <div class="card prediction-card">
+                    <div class="card__body">
+                        <h3>AI Price Predictions</h3>
+                        <div class="prediction-timeframes">
+                            <div class="timeframe-prediction">
+                                <div class="timeframe-header">
+                                    <span class="timeframe-label">Next Day</span>
+                                    <span class="confidence-badge high" id="next-day-confidence">High Confidence</span>
+                                </div>
+                                <div class="prediction-details">
+                                    <span class="predicted-price" id="next-day-price">₹2,580</span>
+                                    <span class="prediction-change positive" id="next-day-change">+123.25 (+5.02%)</span>
+                                </div>
+                            </div>
+                            <div class="timeframe-prediction">
+                                <div class="timeframe-header">
+                                    <span class="timeframe-label">Next Week</span>
+                                    <span class="confidence-badge medium" id="next-week-confidence">Medium Confidence</span>
+                                </div>
+                                <div class="prediction-details">
+                                    <span class="predicted-price" id="next-week-price">₹2,650</span>
+                                    <span class="prediction-change positive" id="next-week-change">+193.25 (+7.87%)</span>
+                                </div>
+                            </div>
+                            <div class="timeframe-prediction">
+                                <div class="timeframe-header">
+                                    <span class="timeframe-label">Next Month</span>
+                                    <span class="confidence-badge low" id="next-month-confidence">Low Confidence</span>
+                                </div>
+                                <div class="prediction-details">
+                                    <span class="predicted-price" id="next-month-price">₹2,720</span>
+                                    <span class="prediction-change positive" id="next-month-change">+263.25 (+10.72%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trading Recommendations Card -->
+                <div class="card prediction-card">
+                    <div class="card__body">
+                        <h3>AI Trading Recommendation</h3>
+                        <div class="recommendation-main">
+                            <div class="recommendation-signal">
+                                <span class="signal-badge buy" id="trade-signal">STRONG BUY</span>
+                                <span class="signal-confidence" id="signal-confidence">Confidence: 78%</span>
+                            </div>
+                            <div class="recommendation-levels">
+                                <div class="level-item">
+                                    <span class="level-label">Target Price</span>
+                                    <span class="level-value target" id="target-price">₹2,580</span>
+                                </div>
+                                <div class="level-item">
+                                    <span class="level-label">Stop Loss</span>
+                                    <span class="level-value stop-loss" id="stop-loss-price">₹2,420</span>
+                                </div>
+                                <div class="level-item">
+                                    <span class="level-label">Risk Assessment</span>
+                                    <span class="level-value risk" id="risk-level">Medium Risk</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="recommendation-reasoning">
+                            <h4>Analysis Reasoning</h4>
+                            <p id="recommendation-reason">EMA(10) crossed above EMA(20), RSI recovering from oversold, MACD bullish crossover. Strong momentum indicators suggest upward movement.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prediction Models Performance -->
+                <div class="card prediction-card models-card">
+                    <div class="card__body">
+                        <h3>Prediction Models Performance</h3>
+                        <div class="models-list">
+                            <div class="model-item">
+                                <div class="model-info">
+                                    <span class="model-name">Multi-Factor AI</span>
+                                    <span class="model-description">Combined technical analysis with pattern recognition</span>
+                                </div>
+                                <div class="model-stats">
+                                    <span class="model-accuracy">78% Accuracy</span>
+                                    <span class="model-timeframe">1-14 days</span>
+                                </div>
+                            </div>
+                            <div class="model-item">
+                                <div class="model-info">
+                                    <span class="model-name">Trend Following</span>
+                                    <span class="model-description">Based on moving average crossovers and trend strength</span>
+                                </div>
+                                <div class="model-stats">
+                                    <span class="model-accuracy">72% Accuracy</span>
+                                    <span class="model-timeframe">1-5 days</span>
+                                </div>
+                            </div>
+                            <div class="model-item">
+                                <div class="model-info">
+                                    <span class="model-name">Momentum Analysis</span>
+                                    <span class="model-description">RSI, MACD and momentum oscillators</span>
+                                </div>
+                                <div class="model-stats">
+                                    <span class="model-accuracy">68% Accuracy</span>
+                                    <span class="model-timeframe">1-7 days</span>
+                                </div>
+                            </div>
+                            <div class="model-item">
+                                <div class="model-info">
+                                    <span class="model-name">Volatility Model</span>
+                                    <span class="model-description">Bollinger Bands and volatility patterns</span>
+                                </div>
+                                <div class="model-stats">
+                                    <span class="model-accuracy">65% Accuracy</span>
+                                    <span class="model-timeframe">1-3 days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Analysis Section -->
+    <section id="technical" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Technical Analysis Dashboard</h2>
+                <div class="chart-controls">
+                    <select class="form-control" id="chart-stock">
+                        <option value="RELIANCE">RELIANCE</option>
+                        <option value="TCS">TCS</option>
+                        <option value="HDFCBANK">HDFCBANK</option>
+                        <option value="INFY">INFY</option>
+                    </select>
+                    <select class="form-control" id="chart-timeframe">
+                        <option value="1D">1 Day</option>
+                        <option value="1W" selected>1 Week</option>
+                        <option value="1M">1 Month</option>
+                        <option value="3M">3 Months</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="technical-grid">
+                <!-- Main Price Chart -->
+                <div class="card chart-main-card">
+                    <div class="card__body">
+                        <div class="chart-header">
+                            <h3 id="chart-title">RELIANCE Price Chart with Technical Indicators</h3>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="legend-color price"></span>Price</span>
+                                <span class="legend-item"><span class="legend-color sma"></span>SMA(20)</span>
+                                <span class="legend-item"><span class="legend-color ema"></span>EMA(20)</span>
+                                <span class="legend-item"><span class="legend-color bb"></span>Bollinger Bands</span>
+                            </div>
+                        </div>
+                        <div class="chart-container" style="position: relative; height: 400px;">
+                            <canvas id="main-price-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Indicators Panel -->
+                <div class="card indicators-card">
+                    <div class="card__body">
+                        <h3>Technical Indicators</h3>
+                        <div class="indicators-list">
+                            <div class="indicator-item">
+                                <div class="indicator-header">
+                                    <span class="indicator-name">RSI (14)</span>
+                                    <span class="indicator-value" id="rsi-value">68.5</span>
+                                </div>
+                                <div class="indicator-bar">
+                                    <div class="indicator-fill" id="rsi-fill" style="width: 68.5%"></div>
+                                </div>
+                                <span class="indicator-signal" id="rsi-signal">Neutral</span>
+                            </div>
+                            <div class="indicator-item">
+                                <div class="indicator-header">
+                                    <span class="indicator-name">MACD</span>
+                                    <span class="indicator-value" id="macd-value">12.5</span>
+                                </div>
+                                <div class="indicator-status positive" id="macd-status">Bullish Crossover</div>
+                            </div>
+                            <div class="indicator-item">
+                                <div class="indicator-header">
+                                    <span class="indicator-name">Moving Averages</span>
+                                </div>
+                                <div class="ma-signals">
+                                    <div class="ma-signal">
+                                        <span class="ma-label">SMA(20)</span>
+                                        <span class="ma-value" id="sma20-value">₹2,445</span>
+                                        <span class="ma-trend positive" id="sma20-trend">↗</span>
+                                    </div>
+                                    <div class="ma-signal">
+                                        <span class="ma-label">EMA(20)</span>
+                                        <span class="ma-value" id="ema20-value">₹2,452</span>
+                                        <span class="ma-trend positive" id="ema20-trend">↗</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="indicator-item">
+                                <div class="indicator-header">
+                                    <span class="indicator-name">Bollinger Bands</span>
+                                </div>
+                                <div class="bb-levels">
+                                    <div class="bb-level">
+                                        <span class="bb-label">Upper</span>
+                                        <span class="bb-value" id="bb-upper">₹2,580</span>
+                                    </div>
+                                    <div class="bb-level">
+                                        <span class="bb-label">Lower</span>
+                                        <span class="bb-value" id="bb-lower">₹2,320</span>
+                                    </div>
+                                </div>
+                                <span class="bb-position" id="bb-position">Near Middle Band</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support & Resistance Levels -->
+                <div class="card levels-card">
+                    <div class="card__body">
+                        <h3>Support & Resistance Levels</h3>
+                        <div class="levels-list">
+                            <div class="level-group">
+                                <h4>Resistance Levels</h4>
+                                <div class="level-item">
+                                    <span class="level-price resistance">₹2,580</span>
+                                    <span class="level-strength">Strong</span>
+                                    <span class="level-distance">+5.02%</span>
+                                </div>
+                                <div class="level-item">
+                                    <span class="level-price resistance">₹2,520</span>
+                                    <span class="level-strength">Medium</span>
+                                    <span class="level-distance">+2.58%</span>
+                                </div>
+                            </div>
+                            <div class="level-group">
+                                <h4>Support Levels</h4>
+                                <div class="level-item">
+                                    <span class="level-price support">₹2,420</span>
+                                    <span class="level-strength">Strong</span>
+                                    <span class="level-distance">-1.50%</span>
+                                </div>
+                                <div class="level-item">
+                                    <span class="level-price support">₹2,380</span>
+                                    <span class="level-strength">Medium</span>
+                                    <span class="level-distance">-3.12%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI-Powered Portfolio Tracker</h2>
+                <div class="portfolio-controls">
+                    <button class="btn btn--primary" id="add-stock-btn">Add Stock</button>
+                    <button class="btn btn--secondary" id="rebalance-btn">Rebalance Portfolio</button>
+                </div>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Portfolio Summary -->
+                <div class="card portfolio-summary-card">
+                    <div class="card__body">
+                        <h3>Portfolio Summary</h3>
+                        <div class="portfolio-stats">
+                            <div class="stat-item major">
+                                <span class="stat-label">Total Value</span>
+                                <span class="stat-value" id="portfolio-total">₹5,67,850</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Today's P&L</span>
+                                <span class="stat-value positive" id="portfolio-pnl">+₹12,450 (2.24%)</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Total Returns</span>
+                                <span class="stat-value positive" id="portfolio-returns">+₹67,850 (13.57%)</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">AI Score</span>
+                                <span class="stat-value ai-score" id="portfolio-score">78/100</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holdings List -->
+                <div class="card holdings-card">
+                    <div class="card__body">
+                        <h3>Current Holdings with AI Predictions</h3>
+                        <div class="holdings-table">
+                            <div class="holdings-header">
+                                <div class="col-symbol">Symbol</div>
+                                <div class="col-qty">Qty</div>
+                                <div class="col-price">Price</div>
+                                <div class="col-pnl">P&L</div>
+                                <div class="col-prediction">AI Signal</div>
+                                <div class="col-action">Action</div>
+                            </div>
+                            <div class="holdings-body" id="holdings-list">
+                                <!-- Holdings will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Portfolio Insights -->
+                <div class="card portfolio-insights-card">
+                    <div class="card__body">
+                        <h3>AI Portfolio Insights</h3>
+                        <div class="insights-list">
+                            <div class="insight-item recommendation">
+                                <div class="insight-icon">🎯</div>
+                                <div class="insight-content">
+                                    <h4>Rebalancing Suggestion</h4>
+                                    <p>Consider reducing RELIANCE position by 10% and increasing TCS allocation for better risk-adjusted returns.</p>
+                                </div>
+                            </div>
+                            <div class="insight-item alert">
+                                <div class="insight-icon">⚠️</div>
+                                <div class="insight-content">
+                                    <h4>Risk Alert</h4>
+                                    <p>Your portfolio has 45% exposure to Banking sector. Consider diversifying to reduce sector concentration risk.</p>
+                                </div>
+                            </div>
+                            <div class="insight-item opportunity">
+                                <div class="insight-icon">💡</div>
+                                <div class="insight-content">
+                                    <h4>Opportunity</h4>
+                                    <p>AI models predict strong bullish signals for IT sector stocks. Consider increasing allocation to INFY or TCS.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Performance Chart -->
+                <div class="card portfolio-chart-card">
+                    <div class="card__body">
+                        <h3>Portfolio Performance vs Market</h3>
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="portfolio-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banking Section (Existing) -->
+    <section id="banking" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Banking Calculators</h2>
+                <div class="calculator-tabs">
+                    <button class="tab-btn active" data-calc="fd">Fixed Deposit</button>
+                    <button class="tab-btn" data-calc="savings">Savings</button>
+                    <button class="tab-btn" data-calc="rd">Recurring Deposit</button>
+                    <button class="tab-btn" data-calc="emi">Loan EMI</button>
+                </div>
+            </div>
+
+            <!-- Fixed Deposit Calculator -->
+            <div id="fd-calculator" class="calculator-panel active">
+                <div class="calc-grid">
+                    <div class="calc-inputs">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Fixed Deposit Calculator</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Principal Amount (₹)</label>
+                                    <input type="number" class="form-control" id="fd-amount" value="100000" min="1000">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Select Bank</label>
+                                    <select class="form-control" id="fd-bank">
+                                        <option value="HDFC">HDFC Bank - 7.75% (Senior: 7.75%)</option>
+                                        <option value="Axis">Axis Bank - 7.75% (Senior: 7.75%)</option>
+                                        <option value="Bank_of_India">Bank of India - 7.25% (Senior: 7.25%)</option>
+                                        <option value="ICICI">ICICI Bank - 7.50% (Senior: 7.50%)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Tenure (Years)</label>
+                                    <input type="number" class="form-control" id="fd-years" value="3" min="1" max="10">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <input type="checkbox" id="fd-senior"> Senior Citizen (60+ years)
+                                    </label>
+                                </div>
+                                <button class="btn btn--primary btn--full-width" id="calc-fd">Calculate Returns</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calc-results">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Investment Summary</h3>
+                                <div class="result-display">
+                                    <div class="result-item">
+                                        <span class="result-label">Principal Amount:</span>
+                                        <span class="result-value" id="fd-principal">₹1,00,000</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Interest Earned:</span>
+                                        <span class="result-value" id="fd-interest">₹24,975</span>
+                                    </div>
+                                    <div class="result-item major">
+                                        <span class="result-label">Maturity Amount:</span>
+                                        <span class="result-value" id="fd-maturity">₹1,24,975</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Effective Rate:</span>
+                                        <span class="result-value" id="fd-rate">7.75% p.a.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EMI Calculator -->
+            <div id="emi-calculator" class="calculator-panel">
+                <div class="calc-grid">
+                    <div class="calc-inputs">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>EMI Calculator</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Loan Amount (₹)</label>
+                                    <input type="number" class="form-control" id="emi-amount" value="2500000" min="50000">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Loan Type</label>
+                                    <select class="form-control" id="emi-type">
+                                        <option value="home">Home Loan</option>
+                                        <option value="personal">Personal Loan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Select Bank</label>
+                                    <select class="form-control" id="emi-bank">
+                                        <option value="Bajaj_Housing">Bajaj Housing Finance - 7.35%</option>
+                                        <option value="ICICI">ICICI Bank - 7.70%</option>
+                                        <option value="HDFC">HDFC Bank - 7.90%</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Tenure (Years)</label>
+                                    <input type="number" class="form-control" id="emi-years" value="15" min="1" max="30">
+                                </div>
+                                <button class="btn btn--primary btn--full-width" id="calc-emi">Calculate EMI</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calc-results">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>EMI Breakdown</h3>
+                                <div class="result-display">
+                                    <div class="result-item major">
+                                        <span class="result-label">Monthly EMI:</span>
+                                        <span class="result-value" id="emi-monthly">₹23,438</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Principal Amount:</span>
+                                        <span class="result-value" id="emi-principal">₹25,00,000</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Total Interest:</span>
+                                        <span class="result-value" id="emi-total-interest">₹17,18,748</span>
+                                    </div>
+                                    <div class="result-item">
+                                        <span class="result-label">Total Payment:</span>
+                                        <span class="result-value" id="emi-total">₹42,18,748</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other calculators hidden by default -->
+            <div id="savings-calculator" class="calculator-panel"></div>
+            <div id="rd-calculator" class="calculator-panel"></div>
+        </div>
+    </section>
+
+    <!-- Market Insights Section -->
+    <section id="insights" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI Market Insights</h2>
+                <div class="insights-controls">
+                    <span class="status status--success">Live Analysis</span>
+                    <span class="last-update">Updated: <span id="insights-update-time">just now</span></span>
+                </div>
+            </div>
+
+            <div class="insights-grid">
+                <!-- Market Overview -->
+                <div class="card market-overview-card">
+                    <div class="card__body">
+                        <h3>Market Overview</h3>
+                        <div class="market-indices">
+                            <div class="index-item">
+                                <span class="index-name">NIFTY 50</span>
+                                <div class="index-details">
+                                    <span class="index-value">24,127.85</span>
+                                    <span class="index-change positive">+156.32 (0.65%)</span>
+                                </div>
+                            </div>
+                            <div class="index-item">
+                                <span class="index-name">SENSEX</span>
+                                <div class="index-details">
+                                    <span class="index-value">79,586.45</span>
+                                    <span class="index-change positive">+498.58 (0.63%)</span>
+                                </div>
+                            </div>
+                            <div class="index-item">
+                                <span class="index-name">BANKNIFTY</span>
+                                <div class="index-details">
+                                    <span class="index-value">51,789.30</span>
+                                    <span class="index-change negative">-234.67 (-0.45%)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="market-sentiment">
+                            <h4>Market Sentiment</h4>
+                            <div class="sentiment-meter">
+                                <div class="sentiment-bar">
+                                    <div class="sentiment-fill bullish" style="width: 72%"></div>
+                                </div>
+                                <span class="sentiment-label">Bullish (72%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Gainers & Losers -->
+                <div class="card movers-card">
+                    <div class="card__body">
+                        <h3>Top Movers</h3>
+                        <div class="movers-tabs">
+                            <button class="mover-tab active" data-tab="gainers">Top Gainers</button>
+                            <button class="mover-tab" data-tab="losers">Top Losers</button>
+                        </div>
+                        <div class="movers-content">
+                            <div id="gainers-list" class="movers-list">
+                                <div class="mover-item">
+                                    <span class="mover-symbol">ASIANPAINT</span>
+                                    <span class="mover-change positive">+5.67%</span>
+                                </div>
+                                <div class="mover-item">
+                                    <span class="mover-symbol">MARUTI</span>
+                                    <span class="mover-change positive">+4.23%</span>
+                                </div>
+                                <div class="mover-item">
+                                    <span class="mover-symbol">TCS</span>
+                                    <span class="mover-change positive">+3.89%</span>
+                                </div>
+                            </div>
+                            <div id="losers-list" class="movers-list hidden">
+                                <div class="mover-item">
+                                    <span class="mover-symbol">SBIN</span>
+                                    <span class="mover-change negative">-2.34%</span>
+                                </div>
+                                <div class="mover-item">
+                                    <span class="mover-symbol">ITC</span>
+                                    <span class="mover-change negative">-1.87%</span>
+                                </div>
+                                <div class="mover-item">
+                                    <span class="mover-symbol">BHARTIARTL</span>
+                                    <span class="mover-change negative">-1.23%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Market Analysis -->
+                <div class="card analysis-card">
+                    <div class="card__body">
+                        <h3>AI Market Analysis</h3>
+                        <div class="analysis-insights">
+                            <div class="analysis-item">
+                                <h4>Market Regime Detection</h4>
+                                <span class="regime-badge bullish">Bull Market Phase</span>
+                                <p>Strong momentum indicators suggest continuation of upward trend. Market breadth remains positive with 68% stocks above their 20-day moving averages.</p>
+                            </div>
+                            <div class="analysis-item">
+                                <h4>Sector Rotation Analysis</h4>
+                                <div class="sector-signals">
+                                    <div class="sector-signal">
+                                        <span class="sector-name">IT Services</span>
+                                        <span class="sector-signal-badge bullish">Strong Buy</span>
+                                    </div>
+                                    <div class="sector-signal">
+                                        <span class="sector-name">Banking</span>
+                                        <span class="sector-signal-badge neutral">Hold</span>
+                                    </div>
+                                    <div class="sector-signal">
+                                        <span class="sector-name">Oil & Gas</span>
+                                        <span class="sector-signal-badge bearish">Weak</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Economic Calendar -->
+                <div class="card calendar-card">
+                    <div class="card__body">
+                        <h3>Economic Calendar</h3>
+                        <div class="calendar-events">
+                            <div class="event-item">
+                                <div class="event-date">Today</div>
+                                <div class="event-details">
+                                    <span class="event-name">RBI Monetary Policy</span>
+                                    <span class="event-impact high">High Impact</span>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">Tomorrow</div>
+                                <div class="event-details">
+                                    <span class="event-name">Q2 GDP Data</span>
+                                    <span class="event-impact medium">Medium Impact</span>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">Oct 3</div>
+                                <div class="event-details">
+                                    <span class="event-name">US Fed Meeting</span>
+                                    <span class="event-impact high">High Impact</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Stock Modal -->
+    <div id="add-stock-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Stock to Portfolio</h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Select Stock</label>
+                    <select class="form-control" id="modal-stock-select">
+                        <option value="RELIANCE">RELIANCE - Reliance Industries</option>
+                        <option value="TCS">TCS - Tata Consultancy Services</option>
+                        <option value="HDFCBANK">HDFCBANK - HDFC Bank</option>
+                        <option value="INFY">INFY - Infosys</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="modal-quantity" min="1" value="10">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Buy Price (₹)</label>
+                    <input type="number" class="form-control" id="modal-buy-price" value="2456.75" step="0.01">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn--secondary" id="modal-cancel">Cancel</button>
+                <button class="btn btn--primary" id="modal-add-stock">Add Stock</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Market Ticker -->
+    <footer class="market-ticker">
+        <div class="ticker-content" id="ticker-content">
+            <span class="ticker-item">NIFTY: 24,127.85 (+0.65%)</span>
+            <span class="ticker-item">SENSEX: 79,586.45 (+0.63%)</span>
+            <span class="ticker-item">RELIANCE: ₹2,456.75 (+0.51%)</span>
+            <span class="ticker-item">TCS: ₹3,842.30 (-0.41%)</span>
+            <span class="ticker-item">HDFCBANK: ₹1,687.45 (+0.53%)</span>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
